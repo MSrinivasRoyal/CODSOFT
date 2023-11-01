@@ -1,0 +1,42 @@
+import re
+response_rules = {
+    "hello": "Hello! How can I help you?",
+    "hi": "Hello! How can I help you?",
+    "what is your name": "I'm a chatbot designed to assist you.",
+    "who created you": "I was created by M. Srinivas Royal",
+    "bye": "Goodbye! Have a great day!",
+    "weather": "I'm not able to provide real-time weather information. You can check a weather website or app for that.",
+    "tell me a joke": "Sure, here's one: Why did the computer keep freezing? Because it left its Windows open!",
+    "help": "I'm here to answer your questions. Please ask anything you'd like to know.",
+    "suggest a book": "I recommend 'The Hitchhiker's Guide to the Galaxy' by Douglas Adams. It's a great read!",
+    "what's your favorite color": "I don't have personal preferences, but what's your favorite color?",
+    "how old are you": "I'm just a computer program, so I don't have an age.",
+    "tell me a fact": "Here's a fun fact: Honey never spoils. Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still perfectly edible!",
+    "tell me another joke": "Sure, here's one: Why don't scientists trust atoms? Because they make up everything!",
+    "what is the capital of France": "The capital of France is Paris.",
+    "how to stay healthy": "Maintaining a balanced diet and regular exercise are essential for good health. It's also important to get enough sleep and manage stress.",
+    "what is COVID-19": "COVID-19 is a highly contagious respiratory illness caused by the coronavirus SARS-CoV-2. It has led to a global pandemic, and preventive measures include wearing masks, practicing social distancing, and vaccination.",
+    "how to manage stress": "To manage stress, consider relaxation techniques like deep breathing, meditation, or yoga. It's also helpful to maintain a support system and seek professional help if needed.",
+    "solve 3 + 5": "3 + 5 equals 8.",
+    "what is the meaning of life": "The meaning of life is a philosophical question with no single answer. It varies from person to person and can involve personal values, goals, and beliefs.",
+    "how to improve mental health": "To improve mental health, consider activities like exercising, maintaining social connections, practicing mindfulness, and seeking professional help when necessary.",
+    "tell me an interesting science fact": "Sure, here's one: Honey never spoils. Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still perfectly edible!",
+    "what is global warming": "Global warming refers to the long-term increase in Earth's average surface temperature due to human activities, primarily the release of greenhouse gases. It leads to climate change and has environmental consequences.",
+}
+
+def get_response(user_input):
+    user_input = user_input.lower()
+    for pattern, response in response_rules.items():
+        if re.search(r'\b' + re.escape(pattern) + r'\b', user_input):
+            return response
+    return "I'm not sure I understand. Please ask another question."
+
+print("Chatbot: Hello! I'm here to assist you. Type 'bye' to exit.")
+while True:
+    user_input = input("You: ")
+    response = get_response(user_input)
+    print("Chatbot:", response)
+
+    # Exit the chatbot if the user says 'bye'
+    if "bye" in user_input.lower():
+        break
